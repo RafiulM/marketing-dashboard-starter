@@ -5,6 +5,78 @@ body {
   :root {
     --font-sans: var(--font-inter);
     --header-height: calc(var(--spacing) * 12 + 1px);
+    
+    /* Dashboard-specific color scheme */
+    --dashboard-primary: var(--color-blue-600);
+    --dashboard-primary-foreground: var(--color-white);
+    --dashboard-secondary: var(--color-slate-100);
+    --dashboard-secondary-foreground: var(--color-slate-900);
+    --dashboard-accent: var(--color-blue-50);
+    --dashboard-accent-foreground: var(--color-blue-900);
+    
+    /* Data visualization colors */
+    --chart-positive: var(--color-green-500);
+    --chart-positive-bg: var(--color-green-50);
+    --chart-negative: var(--color-red-500);
+    --chart-negative-bg: var(--color-red-50);
+    --chart-warning: var(--color-yellow-500);
+    --chart-warning-bg: var(--color-yellow-50);
+    --chart-info: var(--color-blue-500);
+    --chart-info-bg: var(--color-blue-50);
+    --chart-neutral: var(--color-slate-400);
+    --chart-neutral-bg: var(--color-slate-50);
+    
+    /* Metric colors */
+    --metric-revenue: var(--color-emerald-600);
+    --metric-conversion: var(--color-blue-600);
+    --metric-traffic: var(--color-purple-600);
+    --metric-engagement: var(--color-orange-600);
+    
+    /* Typography scale for dashboard */
+    --dashboard-font-size-xs: 0.75rem;
+    --dashboard-font-size-sm: 0.875rem;
+    --dashboard-font-size-base: 1rem;
+    --dashboard-font-size-lg: 1.125rem;
+    --dashboard-font-size-xl: 1.25rem;
+    --dashboard-font-size-2xl: 1.5rem;
+    --dashboard-font-size-3xl: 1.875rem;
+    --dashboard-font-size-4xl: 2.25rem;
+    
+    /* Dashboard spacing */
+    --dashboard-spacing-xs: 0.25rem;
+    --dashboard-spacing-sm: 0.5rem;
+    --dashboard-spacing-md: 1rem;
+    --dashboard-spacing-lg: 1.5rem;
+    --dashboard-spacing-xl: 2rem;
+    --dashboard-spacing-2xl: 3rem;
+  }
+  
+  /* Dark mode dashboard colors */
+  @variant dark {
+    :root {
+      --dashboard-primary: var(--color-blue-500);
+      --dashboard-primary-foreground: var(--color-white);
+      --dashboard-secondary: var(--color-slate-800);
+      --dashboard-secondary-foreground: var(--color-slate-100);
+      --dashboard-accent: var(--color-slate-800);
+      --dashboard-accent-foreground: var(--color-blue-200);
+      
+      --chart-positive: var(--color-green-400);
+      --chart-positive-bg: var(--color-green-950);
+      --chart-negative: var(--color-red-400);
+      --chart-negative-bg: var(--color-red-950);
+      --chart-warning: var(--color-yellow-400);
+      --chart-warning-bg: var(--color-yellow-950);
+      --chart-info: var(--color-blue-400);
+      --chart-info-bg: var(--color-blue-950);
+      --chart-neutral: var(--color-slate-500);
+      --chart-neutral-bg: var(--color-slate-900);
+      
+      --metric-revenue: var(--color-emerald-400);
+      --metric-conversion: var(--color-blue-400);
+      --metric-traffic: var(--color-purple-400);
+      --metric-engagement: var(--color-orange-400);
+    }
   }
   
   .theme-scaled {
@@ -103,3 +175,172 @@ body {
       @apply !rounded-none !shadow-none;
     }
   }
+
+/* Dashboard-specific component styles */
+
+/* KPI Cards */
+.dashboard-kpi-card {
+  @apply bg-gradient-to-br from-white to-slate-50 border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+.dashboard-kpi-card[data-metric="revenue"] {
+  @apply border-l-4 border-l-emerald-500;
+}
+
+.dashboard-kpi-card[data-metric="conversion"] {
+  @apply border-l-4 border-l-blue-500;
+}
+
+.dashboard-kpi-card[data-metric="traffic"] {
+  @apply border-l-4 border-l-purple-500;
+}
+
+.dashboard-kpi-card[data-metric="engagement"] {
+  @apply border-l-4 border-l-orange-500;
+}
+
+@variant dark {
+  .dashboard-kpi-card {
+    @apply bg-gradient-to-br from-slate-900 to-slate-800 border-slate-700;
+  }
+}
+
+/* Typography hierarchy */
+.dashboard-title {
+  @apply text-2xl font-bold text-slate-900 dark:text-slate-100;
+  font-size: var(--dashboard-font-size-2xl);
+  line-height: 1.2;
+}
+
+.dashboard-subtitle {
+  @apply text-lg font-semibold text-slate-700 dark:text-slate-300;
+  font-size: var(--dashboard-font-size-lg);
+}
+
+.dashboard-metric-value {
+  @apply text-3xl font-bold tabular-nums;
+  font-size: var(--dashboard-font-size-3xl);
+  line-height: 1.1;
+}
+
+.dashboard-metric-label {
+  @apply text-sm font-medium text-slate-600 dark:text-slate-400;
+  font-size: var(--dashboard-font-size-sm);
+}
+
+.dashboard-table-header {
+  @apply text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide;
+  font-size: var(--dashboard-font-size-xs);
+}
+
+/* Data visualization elements */
+.dashboard-chart-container {
+  @apply bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-4;
+}
+
+.dashboard-positive {
+  color: var(--chart-positive);
+  background-color: var(--chart-positive-bg);
+}
+
+.dashboard-negative {
+  color: var(--chart-negative);
+  background-color: var(--chart-negative-bg);
+}
+
+.dashboard-neutral {
+  color: var(--chart-neutral);
+  background-color: var(--chart-neutral-bg);
+}
+
+/* Badges and status indicators */
+.dashboard-badge-active {
+  @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200;
+}
+
+.dashboard-badge-completed {
+  @apply bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200;
+}
+
+.dashboard-badge-scheduled {
+  @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200;
+}
+
+.dashboard-badge-paused {
+  @apply bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200;
+}
+
+/* Tables */
+.dashboard-table {
+  @apply bg-white dark:bg-slate-900;
+}
+
+.dashboard-table-row {
+  @apply border-b border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-150;
+}
+
+.dashboard-table-cell {
+  @apply px-4 py-3 text-sm;
+}
+
+.dashboard-table-cell-numeric {
+  @apply tabular-nums text-right font-medium;
+}
+
+/* Interactive elements */
+.dashboard-button {
+  @apply bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 
+         hover:bg-slate-50 dark:hover:bg-slate-700 
+         focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900
+         transition-all duration-200;
+}
+
+.dashboard-button-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white border-blue-600 
+         focus:ring-blue-500;
+}
+
+/* Loading states */
+.dashboard-skeleton {
+  @apply animate-pulse bg-slate-200 dark:bg-slate-700 rounded;
+}
+
+.dashboard-loading-card {
+  @apply bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-6;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .dashboard-metric-value {
+    font-size: var(--dashboard-font-size-2xl);
+  }
+  
+  .dashboard-title {
+    font-size: var(--dashboard-font-size-xl);
+  }
+}
+
+/* Spacing utilities */
+.dashboard-section {
+  margin-bottom: var(--dashboard-spacing-xl);
+}
+
+.dashboard-grid {
+  gap: var(--dashboard-spacing-md);
+}
+
+/* Accessibility improvements */
+.dashboard-focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900;
+}
+
+/* Print styles */
+@media print {
+  .dashboard-no-print {
+    display: none !important;
+  }
+  
+  .dashboard-kpi-card {
+    @apply shadow-none border border-slate-300;
+  }
+}
