@@ -5,7 +5,7 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
+import Navbar from "@/app/components/Navbar"
 
 import "@/app/dashboard/theme.css"
 
@@ -28,7 +28,7 @@ export default async function DashboardLayout({
     >
       <AppSidebar variant="inset" />
       <SidebarInset>
-        <SiteHeader />
+        <Navbar />
         <div className="flex flex-1 flex-col">{children}</div>
       </SidebarInset>
     </SidebarProvider>

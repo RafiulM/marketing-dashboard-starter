@@ -1,90 +1,97 @@
-# Tech Stack Document
+# Tech Stack Document for marketing-dashboard-starter
 
-This document explains the key technologies chosen for the **codeguide-starter** project. It’s written in everyday language so anyone—technical or not—can understand why each tool was picked and how it supports the application.
+This document explains the technology choices behind the marketing-dashboard-starter in everyday language. It helps non-technical readers understand how each part works and why it was chosen.
 
-## 1. Frontend Technologies
-The frontend is everything the user sees and interacts with. For this project, we’ve used:
+## Frontend Technologies
 
-- **Next.js (App Router)**
-  - A React framework that makes page routing, server-side rendering, and API routes very simple.
-  - Enhances user experience by pre-rendering pages on the server or at build time, leading to faster initial load.
-- **React 18**
-  - The underlying library for building user interfaces with reusable components.
-  - Provides a smooth, interactive experience thanks to its virtual DOM and modern hooks.
-- **TypeScript**
-  - A superset of JavaScript that adds types (labels for data).
-  - Helps catch errors early during development and makes the code easier to maintain.
-- **CSS (globals.css & theme.css)**
-  - **globals.css** applies base styles (fonts, colors, resets) across the entire app.
-  - **dashboard/theme.css** defines the look and feel specific to the dashboard area.
-  - This separation keeps styles organized and avoids accidental style conflicts.
+The frontend is everything the user sees and interacts with in the browser.
 
-By combining these tools, we have a clear structure (Next.js folders for pages and layouts), safer code (TypeScript), and flexible styling with vanilla CSS.
+• Next.js (React-based framework)
+  • Provides file-based routing: page and layout files directly map to URLs (e.g., `/dashboard`)
+  • Supports server-side rendering (SSR) and static site generation (SSG) for fast loading and SEO
+  • Built-in API routes let us handle authentication without a separate server
 
-## 2. Backend Technologies
-The backend handles data, user accounts, and the logic behind the scenes. Our choices here are:
+• React and TypeScript (`.tsx` files)
+  • React offers reusable UI components for buttons, forms, and layouts
+  • TypeScript adds reliable type checking, reducing bugs and improving developer productivity
 
-- **Next.js API Routes**
-  - Allows us to write server-side code (`route.ts` files) alongside our frontend in the same project.
-  - Runs on Node.js, so we can handle requests like sign-up, sign-in, and data fetching in one place.
-- **Node.js Runtime**
-  - The JavaScript environment on the server that executes our API routes.
-- **bcrypt** (npm package)
-  - A library for hashing passwords securely before storing them.
-  - Ensures that even if someone got access to our data, raw passwords aren’t visible.
-- **(Optional) NextAuth.js or JWT**
-  - While this starter kit shows a custom authentication flow, it can easily integrate services like NextAuth.js for email-based login or JWT (JSON Web Tokens) for stateless sessions.
+• CSS Stylesheets
+  • `globals.css`: Defines styles applied across the entire app (colors, fonts, spacing)
+  • `theme.css` (in `/app/dashboard`): Contains dashboard-specific styles and theme rules
+  • This simple CSS approach keeps styling organized, easy to customize, and free of heavy library overhead
 
-These components work together to receive user credentials, verify or store them securely, manage sessions or tokens, and deliver protected data back to the frontend.
+• Data Mocking (`data.json`)
+  • Provides sample data for dashboard charts and tables early in development
+  • Lets designers and developers prototype layouts before real data is available
 
-## 3. Infrastructure and Deployment
-Infrastructure covers where and how we host the app, as well as how changes get delivered:
+## Backend Technologies
 
-- **Git & GitHub**
-  - Version control system (Git) and remote hosting (GitHub) keep track of all code changes and allow team collaboration.
-- **Vercel (or Netlify)**
-  - A popular hosting service optimized for Next.js, with one-click deployments and global content delivery.
-  - Automatically rebuilds and deploys the site whenever code is pushed to the main branch.
-- **GitHub Actions (CI/CD)**
-  - Automates tasks like linting (ESLint), formatting (Prettier), and running any tests you add.
-  - Ensures that only clean, tested code goes live.
+While most code lives in the Next.js project, the backend work happens in these areas:
 
-Together, these tools provide a reliable, scalable setup where every code change is tested and deployed quickly, with minimal manual work.
+• Next.js API Routes (`/app/api/auth/`)
+  • Handle user sign‐in and sign‐up requests (e.g., `/api/auth/login`, `/api/auth/register`)
+  • Simplify server-side logic without a separate backend server
+  • Can be extended to connect with a real database or external auth service
 
-## 4. Third-Party Integrations
-While this starter kit is minimal by design, it already includes or can easily add:
+• External Database (to be connected)
+  • Though not in this starter kit, you’d typically link to a database (e.g., PostgreSQL, MongoDB)
+  • Stores user accounts, sessions, and marketing data for the dashboard
 
-- **bcrypt**
-  - For secure password hashing (included as an npm dependency).
-- **NextAuth.js** (optional)
-  - A full-featured authentication library supporting email/password, OAuth, and more.
-- **Sentry or LogRocket** (optional)
-  - For real-time error tracking and performance monitoring in production.
+## Infrastructure and Deployment
 
-These integrations help extend the app’s capabilities without building every feature from scratch.
+How the app is hosted, updated, and managed behind the scenes:
 
-## 5. Security and Performance Considerations
-We’ve baked in several measures to keep users safe and the app running smoothly:
+• Version Control: Git & GitHub
+  • Tracks all code changes and supports collaboration through branches and pull requests
 
-Security:
-- Passwords are never stored in plain text—bcrypt hashes them with a random salt.
-- API routes can implement CSRF protection and input validation to block malicious requests.
-- Session tokens or cookies are marked secure and HttpOnly to prevent theft via JavaScript.
+• Hosting Platform: Vercel (common choice for Next.js)
+  • Automatic deployments on every GitHub push to the main branch
+  • Global content delivery network (CDN) for fast page loads
 
-Performance:
-- Server-side rendering (SSR) and static site generation (SSG) in Next.js deliver pages faster.
-- Code splitting and lazy-loaded components ensure users only download what they need.
-- Global CSS and theme files are small and cached by the browser for quick repeat visits.
+• CI/CD Pipeline: GitHub Actions (recommended)
+  • Runs automated checks (linting, tests) on every pull request
+  • Deploys to production once code is merged, ensuring consistency and reliability
 
-These strategies work together to give users a fast, secure experience every time.
+## Third-Party Integrations
 
-## 6. Conclusion and Overall Tech Stack Summary
-In building **codeguide-starter**, we chose technologies that:
+This starter kit does not include out-of-the-box services, but here are typical integrations:
 
-- Align with modern web standards (Next.js, React, TypeScript).
-- Provide a clear, file-based project structure for rapid onboarding.
-- Offer built-in support for server-side rendering, API routes, and static assets.
-- Emphasize security through password hashing, session management, and safe defaults.
-- Enable easy scaling and future enhancements via modular code and optional integrations.
+• Analytics (e.g., Google Analytics, Plausible)
+  • Tracks page views and user behavior for marketing insights
 
-This stack strikes a balance between simplicity for newcomers and flexibility for experienced teams. It accelerates development of a secure authentication flow and a polished dashboard, while leaving room to plug in databases, test suites, and advanced features as the project grows.
+• Charting Libraries (e.g., Chart.js, Recharts)
+  • Turns data into interactive charts on the dashboard
+
+• Authentication Services (e.g., Auth0, Firebase Auth)
+  • Provides secure login flows without building your own from scratch
+
+• Payment Processors (e.g., Stripe) – if you plan to add billing or subscription features
+
+## Security and Performance Considerations
+
+To keep users safe and ensure a smooth experience:
+
+• Authentication Security
+  • Use HTTP-only cookies for session tokens (prevents JavaScript access)
+  • Protect API routes with middleware or Next.js’s built-in authentication checks
+
+• Data Protection
+  • Secure environment variables (API keys, database URLs) via Vercel or `.env` files
+  • Sanitize user input on both client and server sides to prevent injection attacks
+
+• Performance Optimizations
+  • Server-side rendering and static generation reduce load times
+  • CDN caching of static assets (images, CSS) speeds up repeat visits
+  • Image optimization (built into Next.js) automatically serves appropriately sized images
+
+## Conclusion and Overall Tech Stack Summary
+
+This starter kit brings together proven, modern web technologies to get you up and running quickly:
+
+• Frontend: Next.js + React + TypeScript + CSS
+• Backend: Next.js API routes with the option to connect any database
+• Deployment: GitHub for version control, Vercel for continuous deployment and global hosting
+• Security: Safe session handling, environment variable management, input sanitization
+• Extensibility: Easy to plug in analytics, charting libraries, authentication providers, and more
+
+Together, these choices ensure a solid foundation for building, scaling, and maintaining a marketing dashboard that looks great, performs well, and stays secure.
