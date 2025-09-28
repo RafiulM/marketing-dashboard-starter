@@ -109,15 +109,15 @@ export function AuthButtons() {
   );
 }
 
-// Simplified version for hero section
+// Enhanced version for hero section
 export function HeroAuthButtons() {
   const { data: session, isPending } = useSession();
 
   if (isPending) {
     return (
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <div className="h-12 w-32 animate-pulse rounded-lg bg-muted" />
-        <div className="h-12 w-32 animate-pulse rounded-lg bg-muted" />
+        <div className="h-14 w-40 animate-pulse rounded-xl bg-muted" />
+        <div className="h-14 w-36 animate-pulse rounded-xl bg-muted" />
       </div>
     );
   }
@@ -125,9 +125,13 @@ export function HeroAuthButtons() {
   if (session?.user) {
     return (
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button asChild size="lg" className="text-base px-8 py-3">
+        <Button 
+          asChild 
+          size="lg" 
+          className="text-lg px-10 py-4 h-14 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+        >
           <Link href="/dashboard">
-            <User className="mr-2 h-5 w-5" />
+            <User className="mr-3 h-5 w-5" />
             Go to Dashboard
           </Link>
         </Button>
@@ -137,15 +141,24 @@ export function HeroAuthButtons() {
 
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button asChild size="lg" className="text-base px-8 py-3">
+      <Button 
+        asChild 
+        size="lg" 
+        className="text-lg px-10 py-4 h-14 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+      >
         <Link href="/sign-up">
-          <UserPlus className="mr-2 h-5 w-5" />
-          Get Started
+          <UserPlus className="mr-3 h-5 w-5" />
+          Get Started Free
         </Link>
       </Button>
-      <Button asChild variant="outline" size="lg" className="text-base px-8 py-3">
+      <Button 
+        asChild 
+        variant="outline" 
+        size="lg" 
+        className="text-lg px-8 py-4 h-14 font-semibold rounded-xl border-2 hover:bg-white/10 dark:hover:bg-white/5 transition-all duration-200 transform hover:scale-105 backdrop-blur-sm"
+      >
         <Link href="/sign-in">
-          <LogIn className="mr-2 h-5 w-5" />
+          <LogIn className="mr-3 h-5 w-5" />
           Sign In
         </Link>
       </Button>
